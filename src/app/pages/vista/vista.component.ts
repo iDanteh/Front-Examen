@@ -48,12 +48,34 @@ export class VistaComponent implements OnInit, AfterViewInit {
   }
 
   openModal(animal: Animal) {
-    this.dialog.open(EditarAnimalComponent, {
+    const dialogOpen = this.dialog.open(EditarAnimalComponent, {
       height: '700px',
       width: '1200px',
       data: animal
     });
 
+    dialogOpen.afterClosed().subscribe(result => {
+
+      console.log(result);
+      console.log(result.mensage);
+      console.log(result.animal.id);
+
+
+
+      
+      if(result.mensage == 'actualizar'){
+        this.http.put<Animal[]>(`http://127.0.0.1:8000/api/animals/${result.animal.id}`, result.animal).subscribe((data) => {
+          this.animals = data;
+        });  
+      }
+      if (result.mensage == 'eliminar') {
+        this.http.delete<Animal[]>(`http://127.0.0.1:8000/api/animals/${result.animal.id}`).subscribe((data) => {
+          this.animals = data;
+        });
+      }
+
+
+    });
   }
 
 }

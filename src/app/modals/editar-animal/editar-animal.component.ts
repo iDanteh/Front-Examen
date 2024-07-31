@@ -36,30 +36,26 @@ export class EditarAnimalComponent {
   ) { }
 
   onNoClick(): void {
-    this.dialogRef.close('Sin cambios');
-  }
-
-  onSaveClick(): void {
-    this.dialogRef.close(this.data);
+    this.dialogRef.close({mensage:'Sin cambios', animal: this.data});
   }
 
   onUpdateClick(): void {
     if (this.textUpdate === 'Confirmar actualización') {
-      this.dialogRef.close(this.data);
+      this.dialogRef.close({mensage:'actualizar', animal: this.data});
     }
     this.textUpdate = 'Confirmar actualización';
   }
 
   onDeleteClick(): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '600px',
+      width: '500px',
       height: '200px',
       data: { message: '¿Estás seguro de que deseas eliminar?' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'confirm') {
-        this.dialogRef.close('Eliminar');
+      if (result === true) {
+        this.dialogRef.close({mensage:'eliminar', animal: this.data});
       }
     });
   }
