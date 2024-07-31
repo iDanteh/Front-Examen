@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Editar Animal</h2>
+<mat-dialog-content>
+
+    <div class="d-flex">
+        <div class="flex-shrink-0">
+            <img src="http://127.0.0.1:8000/image/{{data.urlimg}}" alt="" width="300" />
+        </div>
+    </div>
+    
+    <form #editForm="ngForm">
+        <mat-form-field class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="data.nombre" name="nombre" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Longevidad</mat-label>
+            <textarea matInput [(ngModel)]="data.longevidad" name="longevidad" required></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Descripcion</mat-label>
+            <input matInput [(ngModel)]="data.descripcion" name="descripcion" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>especie</mat-label>
+            <input matInput [(ngModel)]="data.especie" name="especie" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Fecha Creacion</mat-label>
+            <input matInput [(ngModel)]="data.created_at" name="created_at" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Fecha Actualizacion</mat-label>
+            <input matInput [(ngModel)]="data.updated_at" name="updated_at" required>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-button (click)="onDeleteClick()">Eliminar</button>
+    <button mat-button (click)="onUpdateClick()">{{textUpdate}}</button>
+
+</mat-dialog-actions>

@@ -1,0 +1,17 @@
+.full-width {
+    width: 100%;
+}
+
+mat-form-field {
+    margin-bottom: 15px;
+}
+
+h1{
+    text-align: center;
+    padding: 5px;
+}
+
+div{
+    
+    margin: 0px 0px 5px 25px;
+}
