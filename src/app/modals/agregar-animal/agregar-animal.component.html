@@ -1,32 +1,40 @@
-<div class="new-Animal">
-    <form action="">
-        <div>
-            <label for="nombre">Nombre:</label>
-            <input type="text">
-        </div>
+<h2 mat-dialog-title>Agregar Animal</h2>
+<mat-dialog-content>
 
-        <div>
-            <label for="especie">Especie:</label>
-            <input type="text">
-        </div>
+    <div class="d-flex" (click)="openModalImage()">
+        <div class="flex-shrink-0">
 
-        <div>
-            <label for="descripcion">Descripcion:</label>
-            <textarea></textarea>
-        </div>
+            <img *ngIf="seCambio==false" src="{{data.urlimg}}" alt="add_image" height="150" />
+            <img *ngIf="seCambio==true" src="http://127.0.0.1:8000/image/{{data.urlimg}}" alt="add_image" height="150" />
 
-        <div>
-            <label for="urlimg">URL Imagen:</label>
-            <input type="text">
         </div>
-        
-        <div>
-            <label for="longevidad">Longevidad:</label>
-            <input type="text">
-        </div>
-        
-        <div>
-            <input type="submit" value="Agregar">
-        </div>
+    </div>
+
+    <form #addForm="ngForm">
+        <mat-form-field class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="data.nombre" name="nombre" >
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Longevidad</mat-label>
+            <textarea matInput [(ngModel)]="data.longevidad" name="longevidad" ></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Descripcion</mat-label>
+            <input matInput [(ngModel)]="data.descripcion" name="descripcion" >
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>especie</mat-label>
+            <input matInput [(ngModel)]="data.especie" name="especie" >
+        </mat-form-field>
+
     </form>
-</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-button (click)="onclickAdd()">Guardar</button>
+
+</mat-dialog-actions>

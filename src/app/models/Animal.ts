@@ -4,6 +4,4 @@ export interface Animal {
     descripcion: string;
     urlimg : string;
     especie: string;
-    created_at: Date;
-    updated_at: Date;
 }

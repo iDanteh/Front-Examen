@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,7 +8,10 @@ import { Router } from '@angular/router';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
+  @Output() openModalAddChild = new EventEmitter<void>();
 
-  constructor(private route: Router){}
+  triggerOpenModalAdd() {
+    this.openModalAddChild.emit();
+  }
 
 }

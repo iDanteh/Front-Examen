@@ -6,8 +6,9 @@
 }
 
 .cont {
-    max-width: 400px;
-    margin: 6rem auto 2rem;
+    min-width: 380px;
+    max-width: 380px;
+    margin: 6rem 2rem;
 }
 
 .product-card {

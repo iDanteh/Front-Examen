@@ -1,9 +1,11 @@
 
-<app-nav-bar></app-nav-bar>
-
-<div *ngFor="let animal of animals | paginate: { itemsPerPage: 1, currentPage: page }">
-    <app-card [animalCard]="animal" (click)="openModal(animal)"></app-card>
+<app-nav-bar (openModalAddChild)="openModalAdd()" ></app-nav-bar>
+<div class="cards-conteiner">
+    <div class="cards" *ngFor="let animal of animals | paginate: { itemsPerPage: 3, currentPage: page }">
+        <app-card [animalCard]="animal" (click)="openModalEdit(animal)"></app-card>
+    </div>
 </div>
+
 
 <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
 </pagination-controls>

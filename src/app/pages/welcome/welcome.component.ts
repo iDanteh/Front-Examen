@@ -4,11 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,],
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css']
 })
@@ -16,15 +17,16 @@ export class WelcomeComponent implements OnInit {
   authForm!: FormGroup;
   isLoginMode = true;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.router.navigate(['home']);
   }
 
   private loginUser(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>('http://127.0.0.1:8000/api/login', { email, password }, { headers });
+    return this.http.post<any>('http://127.0.0.1:8000/api/login', { correo: email, contraseña: password }, { headers });
   }
 
   private registerUser(nombre: string, email: string, password: string): Observable<any> {
@@ -63,6 +65,7 @@ export class WelcomeComponent implements OnInit {
       this.loginUser(email, password).subscribe(
         response => {
           console.log('Login successful', response);
+          this.router.navigate(['vista']);
         },
         error => {
           console.error('Login error', error);

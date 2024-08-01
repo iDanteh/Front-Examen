@@ -13,6 +13,9 @@ import { CardComponent } from '../../components/card/card.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
 import { EditarAnimalComponent } from '../../modals/editar-animal/editar-animal.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { Router } from '@angular/router';
+import { AgregarAnimalComponent } from '../../modals/agregar-animal/agregar-animal.component';
 
 @Component({
   selector: 'app-vista',
@@ -25,7 +28,10 @@ import { EditarAnimalComponent } from '../../modals/editar-animal/editar-animal.
     FormsModule,
     MatDatepickerModule,
     CardComponent,
-    NgxPaginationModule, NavBarComponent],
+    NgxPaginationModule, 
+    NavBarComponent,
+    MatGridListModule,  
+  ],
   templateUrl: './vista.component.html',
   styleUrls: ['./vista.component.css']
 })
@@ -35,7 +41,7 @@ export class VistaComponent implements OnInit, AfterViewInit {
   animals: Animal[] = [];
   public page!: number;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.http.get<Animal[]>(`http://127.0.0.1:8000/api/allAnimals`).subscribe((data) => {
@@ -47,7 +53,7 @@ export class VistaComponent implements OnInit, AfterViewInit {
 
   }
 
-  openModal(animal: Animal) {
+  openModalEdit(animal: Animal) {
     const dialogOpen = this.dialog.open(EditarAnimalComponent, {
       height: '700px',
       width: '1200px',
@@ -55,14 +61,6 @@ export class VistaComponent implements OnInit, AfterViewInit {
     });
 
     dialogOpen.afterClosed().subscribe(result => {
-
-      console.log(result);
-      console.log(result.mensage);
-      console.log(result.animal.id);
-
-
-
-      
       if(result.mensage == 'actualizar'){
         this.http.put<Animal[]>(`http://127.0.0.1:8000/api/actualizar/${result.animal.id}`, result.animal).subscribe((data) => {
           this.animals = data;
@@ -73,9 +71,23 @@ export class VistaComponent implements OnInit, AfterViewInit {
           this.animals = data;
         });
       }
-
-
     });
+  }
+
+  openModalAdd() {
+    const dialogOpen = this.dialog.open(AgregarAnimalComponent, {
+      height: '700px',
+      width: '1200px',
+    });
+
+    dialogOpen.afterClosed().subscribe(result => {
+      if(result.mensage == 'agregar'){
+        this.http.post<Animal[]>(`http://127.0.0.1:8000/api/agregar`, result.animal).subscribe((data) => {
+          this.animals = data;
+        });
+      }
+    });
+    
   }
 
 }
