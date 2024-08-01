@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,6 +10,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class NavBarComponent {
   @Output() openModalAddChild = new EventEmitter<void>();
+
+  constructor(private router: Router) { }
+
+  cerrarSesion(){
+    this.router.navigate(['home']);
+  }
 
   triggerOpenModalAdd() {
     this.openModalAddChild.emit();

@@ -31,7 +31,7 @@ export class WelcomeComponent implements OnInit {
 
   private registerUser(nombre: string, email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>('http://127.0.0.1:8000/api/newUser', { nombre, email, password }, { headers });
+    return this.http.post<any>('http://127.0.0.1:8000/api/newUser', { nombre: nombre, correo: email, contraseña: password, urlimg:"m1.png" }, { headers });
   }
 
 

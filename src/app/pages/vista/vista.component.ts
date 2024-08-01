@@ -44,10 +44,9 @@ export class VistaComponent implements OnInit, AfterViewInit {
   constructor(public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
-    this.http.get<Animal[]>(`http://127.0.0.1:8000/api/allAnimals`).subscribe((data) => {
-      this.animals = data;
-    });
+    this.getAnimals();
   }
+  
 
   ngAfterViewInit() {
 
@@ -64,11 +63,13 @@ export class VistaComponent implements OnInit, AfterViewInit {
       if(result.mensage == 'actualizar'){
         this.http.put<Animal[]>(`http://127.0.0.1:8000/api/actualizar/${result.animal.id}`, result.animal).subscribe((data) => {
           this.animals = data;
+          this.getAnimals();
         });  
       }
       if (result.mensage == 'eliminar') {
         this.http.delete<Animal[]>(`http://127.0.0.1:8000/api/eliminar/${result.animal.id}`).subscribe((data) => {
           this.animals = data;
+          this.getAnimals();
         });
       }
     });
@@ -84,10 +85,18 @@ export class VistaComponent implements OnInit, AfterViewInit {
       if(result.mensage == 'agregar'){
         this.http.post<Animal[]>(`http://127.0.0.1:8000/api/agregar`, result.animal).subscribe((data) => {
           this.animals = data;
+          this.getAnimals();
         });
       }
     });
     
   }
+
+  getAnimals() {
+    this.http.get<Animal[]>(`http://127.0.0.1:8000/api/allAnimals`).subscribe((data) => {
+      this.animals = data;
+    });
+  }
+  
 
 }

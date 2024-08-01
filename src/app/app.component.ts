@@ -18,6 +18,6 @@ export class AppComponent {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.router.navigate(['vista']);
+    this.router.navigate(['home']);
   }
 }
