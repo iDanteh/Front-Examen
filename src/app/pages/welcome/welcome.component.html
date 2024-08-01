@@ -1,0 +1,30 @@
+<div class="auth-container">
+    <h2>{{ isLoginMode ? 'Ingresar' : 'Registrarse' }}</h2>
+
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-group" *ngIf="!isLoginMode">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" formControlName="nombre" />
+        </div>
+
+        <div class="form-group">
+            <label for="correo">Correo</label>
+            <input id="correo" type="email" formControlName="email" />
+        </div>
+
+        <div class="form-group">
+            <label for="contraseña">Contraseña</label>
+            <input id="contraseña" type="password" formControlName="password" />
+        </div>
+
+        <div class="form-group" *ngIf="!isLoginMode">
+            <label for="confirmcontraseña">Confirmar Contraseña</label>
+            <input id="confirmcontraseña" type="password" formControlName="confirmPassword" />
+        </div>
+
+        <button type="submit">{{ isLoginMode ? 'Ingresar' : 'Registrarse' }}</button>
+    </form>
+
+    <button class="toggle-button" (click)="onSwitchMode()">{{ isLoginMode ? 'Registrarse' : 'Ingresar' }}</button>
+</div>
