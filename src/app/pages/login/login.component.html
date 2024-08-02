@@ -1,0 +1,72 @@
+<div class="is-cuerpo">
+
+    <section *ngIf="ingresarEstado == false" class="is-formulario-registrar">
+        <div class="is-form-contenedor">
+            <h2>Correo Electronico</h2>
+            <div class="is-usuario">
+                <mat-form-field class="is-usuario">
+                    <mat-label>Ingrese su Correo </mat-label>
+                    <input [(ngModel)]="usuario.correo" matInput>
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+            </div>
+            <h2>Contraseña</h2>
+            <div class="is-password">
+                <mat-form-field>
+                    <mat-label>Ingrese su contraseña</mat-label>
+                    <input [(ngModel)]="usuario.contrasena" matInput [type]="hide() ? 'password' : 'text'" />
+                    <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide()">
+                        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <div class="is-form-button">
+                <button class="is-form-button-ingresar" mat-flat-button type="button" (click)="ingresar()">Ingresar</button>
+                <button class="is-form-button-registrar" mat-flat-button type="button" (click)="registrar()">Registrarte</button>
+            </div>
+        </div>
+    </section>
+
+    <section *ngIf="ingresarEstado == false" class="is-portada-registrar">
+        <div>
+            <h1>Bienvenido</h1>
+            <p>Ingresa tus datos para acceder a la plataforma</p>
+        </div>
+    </section>
+
+
+    <section *ngIf="ingresarEstado == true" class="is-portada">
+        <div>
+            <h1>Bienvenido</h1>
+            <p>Ingresa tus datos para acceder a la plataforma</p>
+        </div>
+    </section>
+    <section *ngIf="ingresarEstado == true" class="is-formulario">
+        <div class="is-form-contenedor">
+            <h2>Correo Electronico</h2>
+            <div class="is-usuario">
+                <mat-form-field class="is-usuario">
+                    <mat-label>Ingrese su Correo </mat-label>
+                    <input [(ngModel)]="usuario.correo" matInput>
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+            </div>
+            <h2>Contraseña</h2>
+            <div class="is-password">
+                <mat-form-field>
+                    <mat-label>Ingrese su contraseña</mat-label>
+                    <input [(ngModel)]="usuario.contrasena" matInput [type]="hide() ? 'password' : 'text'" />
+                    <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide()">
+                        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <div class="is-form-button">
+                <button class="is-form-button-ingresar" mat-flat-button type="button" (click)="ingresar()">Ingresar</button>
+                <button class="is-form-button-registrar" mat-flat-button type="button" (click)="registrar()">Registrarte</button>
+            </div>
+        </div>
+    </section>
+</div>

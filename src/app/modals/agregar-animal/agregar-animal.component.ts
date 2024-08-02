@@ -41,7 +41,9 @@ export class AgregarAnimalComponent {
   constructor(public dialogRef: MatDialogRef<AgregarAnimalComponent>, private dialog: MatDialog ) { }
 
   onclickAdd() {
-    this.dialogRef.close({mensage:'agregar', animal: this.data});
+    if(this.seCambio){
+      this.dialogRef.close({mensage:'agregar', animal: this.data});
+    }
   }
 
   onNoClick(): void {
@@ -56,7 +58,7 @@ export class AgregarAnimalComponent {
 
     dialogImage.afterClosed().subscribe(result => {
       console.log(result);
-      if (!(result === undefined)) {
+      if (!(result === undefined && result.url == '/add_image.png' )) {
         this.data.urlimg = result.url;
         this.seCambio = true;
         console.log(this.data.urlimg);

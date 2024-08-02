@@ -1,0 +1,133 @@
+.mat-toolbar {
+    background-color: rgb(153, 50, 50);
+    color: rgb(53, 33, 232);
+}
+
+
+.is-cuerpo {
+    background-image: linear-gradient(to bottom right, #096bb3, #0c0c0c);
+    /* De rojo a blanco, de esquina a esquina */
+    height: 100vh;
+    display: flex;
+}
+
+.is-portada {
+    background-image: linear-gradient(to bottom right, #80c5f8 15%, #075791 100%);
+    /* Más azul y menos naranja */
+    height: 85%;
+    width: 40%;
+    margin: 3% 0% 10% 15%;
+    border-radius: 10px 0px 0px 10px;
+    box-shadow: 5px 5px 50px 0px #363636;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.is-formulario {
+    background-color: #80c5f8;
+    height: 85%;
+    width: 30%;
+    margin: 3% 15% 10% 0%;
+    border-radius: 0px 10px 10px 0px;
+    box-shadow: 5px 5px 50px 0px #363636;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.is-portada h1 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 5em;
+    font-weight: normal;
+    color: #a2cdee;
+
+}
+
+.is-portada p {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 1em;
+    font-weight: lighter;
+    color: #043c7c;
+}
+
+.is-form-contenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10%;
+}
+
+.is-form-contenedor h2 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 2em;
+    font-weight: lighter;
+    color: #096bb3;
+
+}
+
+.is-form-button button {
+    /* Más azul y menos naranja */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10%;
+}
+
+.is-form-button-ingresar {
+    background-image: linear-gradient(to bottom left, #075791 35%, #80c5f8 100%);
+    
+}
+
+.is-form-button-registrar {
+    background-image: linear-gradient(to bottom left, #079168 35%, #80f8c6 100%);
+
+}
+
+
+.is-portada-registrar {
+    background-image: linear-gradient(to bottom right, #80c5f8 15%, #075791 100%);
+    /* Más azul y menos naranja */
+    height: 85%;
+    width: 40%;
+    margin: 3% 15% 10% 0%;
+    
+    border-radius: 0px 10px 10px 0px;
+    
+    box-shadow: 5px 5px 50px 0px #363636;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.is-formulario-registrar {
+    background-color: #80c5f8;
+    height: 85%;
+    width: 30%;
+    margin: 3% 0% 10% 15%;
+    
+    border-radius: 10px 0px 0px 10px;
+
+    box-shadow: 5px 5px 50px 0px #363636;
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.is-portada-registrar h1 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 5em;
+    font-weight: normal;
+    color: #a2cdee;
+
+}
+
+.is-portada-registrar p {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 1em;
+    font-weight: lighter;
+    color: #043c7c;
+}

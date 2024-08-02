@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Usuario } from '../../models/Users';
 
 @Component({
   selector: 'app-welcome',
@@ -26,7 +27,7 @@ export class WelcomeComponent implements OnInit {
 
   private loginUser(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>('http://127.0.0.1:8000/api/login', { correo: email, contraseña: password }, { headers });
+    return this.http.post<Usuario>('http://127.0.0.1:8000/api/login', { correo: email, contraseña: password }, { headers });
   }
 
   private registerUser(nombre: string, email: string, password: string): Observable<any> {
@@ -60,33 +61,46 @@ export class WelcomeComponent implements OnInit {
     const email = this.authForm.value.email;
     const password = this.authForm.value.password;
   
+    const observer = {
+      next: (response: any) => {
+        console.log('Login successful', response);
+        this.router.navigate(['vista']);
+      },
+      error: (error: any) => {
+        console.error('Login error', error);
+        if (error.status == 401) {
+          console.error('Credenciales inválidas');
+        }
+      },
+      complete: () => {
+        console.log('Login request completed');
+      }
+    };
+  
     if (this.isLoginMode) {
       // Llamar a la API de inicio de sesión
-      this.loginUser(email, password).subscribe(
-        response => {
-          console.log('Login successful', response);
-          this.router.navigate(['vista']);
-        },
-        error => {
-          console.error('Login error', error);
-        }
-      );
+      this.loginUser(email, password).subscribe(observer);
     } else {
       if (password !== this.authForm.value.confirmPassword) {
         console.error('Passwords do not match');
         return;
       }
-      this.registerUser(nombre, email, password).subscribe(
-        response => {
+      this.registerUser(nombre, email, password).subscribe({
+        next: (response: any) => {
           console.log('Registration successful', response);
         },
-        error => {
+        error: (error: any) => {
           console.error('Registration error', error);
+        },
+        complete: () => {
+          console.log('Registration request completed');
         }
-      );
+      });
     }
     this.authForm.reset();
   }
+  
+  
   
 
 }

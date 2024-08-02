@@ -4,6 +4,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CardComponent } from './components/card/card.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { Router } from '@angular/router';
+import { Usuario } from './models/Users';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,15 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'frontend-project';
+  Usuario: Usuario = {
+    nombre: '',
+    correo: '',
+    contrasena: '',
+  };
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.router.navigate(['home']);
+    this.router.navigate(['login']);
   }
 }
