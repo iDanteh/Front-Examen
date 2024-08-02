@@ -18,7 +18,7 @@
 
         <mat-form-field class="full-width">
             <mat-label>Longevidad</mat-label>
-            <textarea matInput [(ngModel)]="data.longevidad" name="longevidad" ></textarea>
+            <input matInput [(ngModel)]="data.longevidad" name="longevidad" onkeydown="return /[0-9]/i.test(event.key) || event.key == 'Backspace' || event.key == 'Tab'">
         </mat-form-field>
 
         <mat-form-field class="full-width">
@@ -27,7 +27,7 @@
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <mat-label>especie</mat-label>
+            <mat-label>Especie</mat-label>
             <input matInput [(ngModel)]="data.especie" name="especie" >
         </mat-form-field>
 

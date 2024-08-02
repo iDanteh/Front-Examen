@@ -1,5 +1,5 @@
 
-<app-nav-bar (openModalAddChild)="openModalAdd()" ></app-nav-bar>
+<app-nav-bar [usuarioNav]="this.usuario" (openModalAddChild)="openModalAdd()" ></app-nav-bar>
 <div class="cards-conteiner">
     <div class="cards" *ngFor="let animal of animals | paginate: { itemsPerPage: 3, currentPage: page }">
         <app-card [animalCard]="animal" (click)="openModalEdit(animal)"></app-card>

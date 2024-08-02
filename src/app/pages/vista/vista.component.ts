@@ -16,6 +16,8 @@ import { EditarAnimalComponent } from '../../modals/editar-animal/editar-animal.
 import {MatGridListModule} from '@angular/material/grid-list';
 import { Router } from '@angular/router';
 import { AgregarAnimalComponent } from '../../modals/agregar-animal/agregar-animal.component';
+import { ActivatedRoute } from '@angular/router';
+import { Usuario } from '../../models/Users';
 
 @Component({
   selector: 'app-vista',
@@ -40,11 +42,27 @@ export class VistaComponent implements OnInit, AfterViewInit {
   http = inject(HttpClient);
   animals: Animal[] = [];
   public page!: number;
+  usuario: Usuario = {
+    id: 0,
+    nombre: '',
+    correo: '',
+    contrasena: '',
+    urlimg: '/add_image.png',
+  };
 
-  constructor(public dialog: MatDialog, private router: Router) { }
+  constructor(public dialog: MatDialog, private router: Router, private route: ActivatedRoute, ) { }
 
   ngOnInit(): void {
     this.getAnimals();
+    this.route.params.subscribe(params => {
+      this.usuario = {
+        id: params['id'],
+        nombre: params['nombre'],
+        correo: params['correo'],
+        contrasena: params['contrasena'],
+        urlimg: params['urlimg'],
+      };
+    });
   }
   
 

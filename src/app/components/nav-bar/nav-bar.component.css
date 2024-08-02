@@ -35,7 +35,7 @@
 .navbar-container{
     display: flex;
     justify-content: space-between;
-    height: 64px;
+    height: 98px;
     align-items: center;
 }
 
@@ -63,6 +63,25 @@
 
 .navbar a:hover{
     color: #117964;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-right: 1.5rem;
+}
+
+.user-image {
+    width: 60px; /* Ajusta el tamaño según tus necesidades */
+    height: 60px; /* Ajusta el tamaño según tus necesidades */
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 5% 10% 5% 0;
+}
+
+.logo{
+    font-size: 2.5rem;
+    margin-top: 6%;
 }
 
 @media (max-width: 768px){

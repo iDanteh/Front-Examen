@@ -1,0 +1,14 @@
+.full-width {
+    width: 100%;
+}
+
+mat-form-field {
+    margin-bottom: 15px;
+}
+
+div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}

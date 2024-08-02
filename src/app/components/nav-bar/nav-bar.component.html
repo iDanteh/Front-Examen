@@ -6,10 +6,14 @@
             <span class="line line2"></span>
             <span class="line line3"></span>
         </div>
+        <div class="user-info">
+            <img (click)="openModalViewUser()" src= "http://127.0.0.1:8000/image/user/{{usuarioNav.urlimg}}" alt="User Image" class="user-image">
+            <h1 class="logo">animal<strong>ITO</strong>s</h1>        
+        </div>
         <ul class="menu-items">
             <li><a (click)="cerrarSesion()">Cerrar Sesion</a></li>
             <li><a (click)="triggerOpenModalAdd()">Agregar especie</a></li>
         </ul>
-        <h1 class="logo">animal<strong>ITO</strong>s</h1>
+        
     </div>
 </nav>

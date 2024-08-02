@@ -1,13 +1,11 @@
-<h2 mat-dialog-title>Editar Animal</h2>
+<h2 mat-dialog-title>Usuario</h2>
 <mat-dialog-content>
 
     <div class="d-flex">
         <div class="flex-shrink-0">
-            <img src="http://127.0.0.1:8000/image/{{data.urlimg}}" alt="" width="300" />
+            <img src="http://127.0.0.1:8000/image/user/{{data.urlimg}}" alt="" width="150" />
         </div>
     </div>
-
-
     
     <form #editForm="ngForm">
         <mat-form-field class="full-width">
@@ -16,18 +14,13 @@
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <mat-label>Longevidad</mat-label>
-            <textarea matInput [(ngModel)]="data.longevidad" name="longevidad" onkeydown="return /[0-9]/i.test(event.key) || event.key == 'Backspace' || event.key == 'Tab'" required></textarea>
+            <mat-label>Correo</mat-label>
+            <input matInput [(ngModel)]="data.correo" name="correo" onkeydown="return /[a-zA-Z ]/i.test(event.key)" required>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <mat-label>Descripcion</mat-label>
-            <input matInput [(ngModel)]="data.descripcion" name="descripcion" onkeydown="return /[a-zA-Z ]/i.test(event.key)" required>
-        </mat-form-field>
-
-        <mat-form-field class="full-width">
-            <mat-label>Especie</mat-label>
-            <input matInput [(ngModel)]="data.especie" name="especie" onkeydown="return /[a-zA-Z ]/i.test(event.key)" required>
+            <mat-label>Contraseña</mat-label>
+            <input matInput [(ngModel)]="data.contrasena" name="contrasena" onkeydown="return /[a-zA-Z ]/i.test(event.key)" required>
         </mat-form-field>
 
     </form>

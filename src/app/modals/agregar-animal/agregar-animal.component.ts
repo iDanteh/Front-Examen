@@ -54,6 +54,10 @@ export class AgregarAnimalComponent {
     const dialogImage = this.dialog.open(ImageDialogComponent, {
       width: '500px',
       height: '600px',
+      data: ["http://127.0.0.1:8000/api/showAllImages",
+        "http://127.0.0.1:8000/api/uploadImage",
+        "http://127.0.0.1:8000/image"
+      ]
     });
 
     dialogImage.afterClosed().subscribe(result => {

@@ -8,6 +8,6 @@
 
 <div class="image-container">
     <div class="image" *ngFor="let ImageUrl of ImagesUrls" >
-        <img src="http://127.0.0.1:8000/image/{{ImageUrl.url}}" alt="" width="200" (click)="onClickSelectImage(ImageUrl)"/>
+        <img src="{{data[2]}}/{{ImageUrl.url}}" alt="" width="200" (click)="onClickSelectImage(ImageUrl)"/>
     </div>
 </div>

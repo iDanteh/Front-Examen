@@ -31,10 +31,12 @@ export class ImageDialogComponent {
   ImagesUrls: ImageUrl[] = [];
   selectedFile: File | null = null;
 
-  constructor(public dialogImageReg: MatDialogRef<ImageDialogComponent>) {}
+  constructor(public dialogImageReg: MatDialogRef<ImageDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: string[],
+  ) {}
 
   ngOnInit(): void {
-    this.http.get<ImageUrl[]>(`http://127.0.0.1:8000/api/showAllImages`).subscribe((data) => {
+    this.http.get<ImageUrl[]>(`${this.data[0]}`).subscribe((data) => {
       this.ImagesUrls = data;
     });
   }
@@ -52,7 +54,7 @@ export class ImageDialogComponent {
       const formData = new FormData();
       formData.append('image', this.selectedFile, this.selectedFile.name);
 
-      this.http.post('http://127.0.0.1:8000/api/uploadImage', formData).subscribe(response => {
+      this.http.post(`${this.data[1]}`, formData).subscribe(response => {
         console.log('Image uploaded successfully', response);
         // Reload the images after successful upload
         this.ngOnInit();

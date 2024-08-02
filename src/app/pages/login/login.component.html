@@ -1,18 +1,36 @@
 <div class="is-cuerpo">
 
+    <!-- Tu componente HTML -->
     <section *ngIf="ingresarEstado == false" class="is-formulario-registrar">
         <div class="is-form-contenedor">
-            <h2>Correo Electronico</h2>
+            <h2>Foto de Perfil</h2>
+            <div (click)="openModalImage()">
+                <img *ngIf="seCambio==false" src="{{usuario.urlimg}}" alt="add_image" height="50" />
+                <img *ngIf="seCambio==true" src="http://127.0.0.1:8000/image/user/{{usuario.urlimg}}" alt="add_image"
+                    height="50" />
+            </div>
+
             <div class="is-usuario">
-                <mat-form-field class="is-usuario">
-                    <mat-label>Ingrese su Correo </mat-label>
-                    <input [(ngModel)]="usuario.correo" matInput>
+                <mat-label>Nombre</mat-label>
+                <mat-form-field class="is-form-field" appearance="outline" color="accent">
+                    <mat-label>Ingrese su Nombre</mat-label>
+                    <input [(ngModel)]="usuario.nombre" onkeydown="return /[a-zA-Z ]/i.test(event.key)" matInput>
                     <mat-icon matSuffix>person</mat-icon>
                 </mat-form-field>
             </div>
-            <h2>Contraseña</h2>
+
+            <div class="is-usuario">
+                <mat-label>Correo Electronico</mat-label>
+                <mat-form-field class="is-form-field" appearance="outline" color="accent">
+                    <mat-label>Ingrese su Correo</mat-label>
+                    <input [(ngModel)]="usuario.correo" matInput>
+                    <mat-icon matSuffix>mail</mat-icon>
+                </mat-form-field>
+            </div>
+
             <div class="is-password">
-                <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <mat-form-field class="is-form-field" appearance="outline" color="accent">
                     <mat-label>Ingrese su contraseña</mat-label>
                     <input [(ngModel)]="usuario.contrasena" matInput [type]="hide() ? 'password' : 'text'" />
                     <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
@@ -21,17 +39,34 @@
                     </button>
                 </mat-form-field>
             </div>
+
             <div class="is-form-button">
-                <button class="is-form-button-ingresar" mat-flat-button type="button" (click)="ingresar()">Ingresar</button>
-                <button class="is-form-button-registrar" mat-flat-button type="button" (click)="registrar()">Registrarte</button>
+                <button class="is-form-button-registrar" mat-flat-button type="button"
+                    (click)="registrar()">Registrarte</button>
+                <button class="is-form-button-ingresar" mat-flat-button type="button"
+                    (click)="cambiarIngresar()">Ingresar</button>
             </div>
         </div>
     </section>
 
+    <!-- Tu archivo CSS -->
+    <style>
+        .is-form-field {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        mat-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+
     <section *ngIf="ingresarEstado == false" class="is-portada-registrar">
         <div>
-            <h1>Bienvenido</h1>
-            <p>Ingresa tus datos para acceder a la plataforma</p>
+            <h1>Registrarte</h1>
+            <p>Ingresa tus datos para registrarte en la plataforma</p>
         </div>
     </section>
 
@@ -64,8 +99,10 @@
                 </mat-form-field>
             </div>
             <div class="is-form-button">
-                <button class="is-form-button-ingresar" mat-flat-button type="button" (click)="ingresar()">Ingresar</button>
-                <button class="is-form-button-registrar" mat-flat-button type="button" (click)="registrar()">Registrarte</button>
+                <button class="is-form-button-ingresar" mat-flat-button type="button"
+                    (click)="ingresar()">Ingresar</button>
+                <button class="is-form-button-registrar" mat-flat-button type="button"
+                    (click)="cambiarIngresar()">Registrarte</button>
             </div>
         </div>
     </section>

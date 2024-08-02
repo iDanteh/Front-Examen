@@ -115,6 +115,19 @@
     display: grid;
     justify-content: center;
     align-items: center;
+
+}
+
+.is-formulario-registrar h2 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 1em;
+    font-weight: lighter;
+    color: #096bb3;
+}
+
+.is-portada-registrar mat-form-field {
+    width: 2% !important;
+    margin-bottom: 0;
 }
 
 .is-portada-registrar h1 {
@@ -125,9 +138,16 @@
 
 }
 
+
 .is-portada-registrar p {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 1em;
     font-weight: lighter;
     color: #043c7c;
+}
+
+.is-formulario-registrar {
+
+    color: #1479c7;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
