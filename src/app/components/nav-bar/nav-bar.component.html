@@ -8,11 +8,15 @@
         </div>
         <div class="user-info">
             <img (click)="openModalViewUser()" src= "http://127.0.0.1:8000/image/user/{{usuarioNav.urlimg}}" alt="User Image" class="user-image">
-            <h1 class="logo">animal<strong>ITO</strong>s</h1>        
+            <h1 class="logo">animal<strong>ITO</strong>s</h1>     
         </div>
+        <mat-dialog-actions>
+            <button class="agregar" mat-button (click)="triggerOpenModalAdd()">Agregar</button>
+        </mat-dialog-actions> 
         <ul class="menu-items">
             <li><a (click)="cerrarSesion()">Cerrar Sesion</a></li>
-            <li><a (click)="triggerOpenModalAdd()">Agregar especie</a></li>
+            <li><a (click)="vistaUsuario()">Usuarios</a></li>
+            <li><a (click)="vistaAnimales()">Animales</a></li>
         </ul>
         
     </div>

@@ -2,32 +2,36 @@
 <mat-dialog-content>
 
     <div class="d-flex">
-        <div class="flex-shrink-0">
-            <img src="http://127.0.0.1:8000/image/user/{{data.urlimg}}" alt="" width="150" />
+        <div class="flex-shrink-0" (click)="openModalImage()">
+            <img src="http://127.0.0.1:8000/image/user/{{data.usuario.urlimg}}" alt="" width="50" />
         </div>
     </div>
     
     <form #editForm="ngForm">
         <mat-form-field class="full-width">
             <mat-label>Nombre</mat-label>
-            <input matInput [(ngModel)]="data.nombre" name="nombre" onkeydown="return /[a-zA-Z ]/i.test(event.key)" required>
+            <input matInput [(ngModel)]="data.usuario.nombre" name="nombre" onkeydown="return /[a-zA-Z ]/i.test(event.key)" required>
         </mat-form-field>
 
         <mat-form-field class="full-width">
             <mat-label>Correo</mat-label>
-            <input matInput [(ngModel)]="data.correo" name="correo" onkeydown="return /[a-zA-Z ]/i.test(event.key)" required>
+            <input matInput [(ngModel)]="data.usuario.correo" name="correo" onkeydown="return /[a-zA-Z, @, . ]/i.test(event.key)" required>
         </mat-form-field>
 
         <mat-form-field class="full-width">
             <mat-label>Contraseña</mat-label>
-            <input matInput [(ngModel)]="data.contrasena" name="contrasena" onkeydown="return /[a-zA-Z ]/i.test(event.key)" required>
+            <input matInput [(ngModel)]="data.usuario.contrasena" name="contrasena" required>
         </mat-form-field>
 
     </form>
 </mat-dialog-content>
-<mat-dialog-actions>
+<mat-dialog-actions *ngIf="!data.agregar">
     <button mat-button (click)="onNoClick()">Cancelar</button>
     <button mat-button (click)="onDeleteClick()">Eliminar</button>
     <button mat-button (click)="onUpdateClick()">{{textUpdate}}</button>
+</mat-dialog-actions>
 
+<mat-dialog-actions *ngIf="data.agregar">
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-button (click)="onClickAdd()">Agregar</button>
 </mat-dialog-actions>

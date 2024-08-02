@@ -13,6 +13,7 @@ import {
   MatSnackBar, MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 
 
 @Component({
@@ -25,7 +26,8 @@ import {
     MatIconModule,
     MatInputModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    ImageDialogComponent
   ],
   templateUrl: './user-dialog.component.html',
   styleUrl: './user-dialog.component.css'
@@ -35,22 +37,24 @@ export class UserDialogComponent {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   textUpdate = 'Actualizar';
+  seCambio = false;
+
 
   constructor(public dialogRef: MatDialogRef<UserDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Usuario,
+    @Inject(MAT_DIALOG_DATA) public data: {usuario: Usuario, agregar: boolean},
     private dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) { }
 
   onNoClick(): void {
-    this.dialogRef.close({ mensage: 'Sin cambios', usuario: this.data });
+    this.dialogRef.close({ mensage: 'Sin cambios', usuario: this.data.usuario });
   }
 
   onUpdateClick(): void {
     console.log("userComponent");
     console.log(this.data);
     if (this.textUpdate === 'Confirmar actualización') {
-      if (!(this.validarCorreoELectronico(this.data.correo))) {
+      if (!(this.validarCorreoELectronico(this.data.usuario.correo))) {
         this._snackBar.open("Correo no valido", "Cerrar", {
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
@@ -58,7 +62,7 @@ export class UserDialogComponent {
           panelClass: ['mat-toolbar']
         });
       }
-      else if (!(this.validarContrasena(this.data.contrasena))) {
+      else if (!(this.validarContrasena(this.data.usuario.contrasena))) {
         this._snackBar.open("Contraseña no valida", "Cerrar", {
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
@@ -67,7 +71,7 @@ export class UserDialogComponent {
         });
       }
       else {
-        this.dialogRef.close({ mensage: 'actualizar', usuario: this.data });
+        this.dialogRef.close({ mensage: 'actualizar', usuario: this.data.usuario });
       }
     }
     this.textUpdate = 'Confirmar actualización';
@@ -101,4 +105,29 @@ export class UserDialogComponent {
     }
     else return false
   }
+
+  openModalImage() {
+    // cambiar usuario.urlimg
+    const dialogImage = this.dialog.open(ImageDialogComponent, {
+      width: '500px',
+      height: '600px',
+      data: ["http://127.0.0.1:8000/api/showAllImagesUser",
+        "http://127.0.0.1:8000/api/uploadImageUser",
+        "http://127.0.0.1:8000/image/user"]
+    });
+
+    dialogImage.afterClosed().subscribe(result => {
+      console.log(result);
+      if (!(result === undefined && result.url == '/add_image.png')) {
+        this.data.usuario.urlimg = result.url;
+        this.seCambio = true;
+        console.log(this.data.usuario.urlimg);
+      }
+    });
+  }
+
+  onClickAdd(){
+    this.dialogRef.close({ mensage: 'agregar', usuario: this.data.usuario });
+  }
+    
 }

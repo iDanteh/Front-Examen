@@ -1,0 +1,21 @@
+.cards-conteiner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.cards {
+    display: inline-block;
+}
+
+.paginator {
+    position: absolute;
+    bottom: 12%;
+    left: 36%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

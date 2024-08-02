@@ -4,13 +4,15 @@ import { AgregarAnimalComponent } from './modals/agregar-animal/agregar-animal.c
 import { NgModule } from '@angular/core';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { LoginComponent } from './pages/login/login.component';
+import { VistaUsuariosComponent } from './pages/vista-usuarios/vista-usuarios.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/home' , pathMatch: 'full'},
     {path: 'home', component: WelcomeComponent},
     { path: 'vista', component: VistaComponent },
     { path: 'agregarAnimal', component: AgregarAnimalComponent },
-    {path: 'login', component: LoginComponent}
+    {path: 'login', component: LoginComponent},
+    { path: 'vistaUsuarios', component: VistaUsuariosComponent },
 ];
 
 // @NgModule({

@@ -44,8 +44,12 @@
     display: flex;
 }
 .logo{
-    order: 1;
+    order: 2;
     font-size: 2.3rem;
+}
+
+.agregar{
+    order: 1;
 }
 
 .menu-items li{

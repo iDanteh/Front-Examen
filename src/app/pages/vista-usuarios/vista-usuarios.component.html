@@ -1,0 +1,14 @@
+
+<app-nav-bar [usuarioNav]="this.usuario" (openModalAddChild)="openModalAdd()" ></app-nav-bar>
+<div class="cards-conteiner">
+    <div class="cards" *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 3, currentPage: page }">
+        <app-card-usuario [usuarioCard]="usuario" (click)="openModalEdit(usuario)"></app-card-usuario>
+    </div>
+</div>
+
+
+<div class="paginator">
+    <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
+    </pagination-controls>
+</div>
+
